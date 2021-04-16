@@ -1,12 +1,24 @@
 from django.db import models
-from auth.models import Account
 
+
+class User(models.Model):
+    login = models.CharField(max_length=30)
+    password = models.CharField(max_length=100)
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
+    registration_time = models.DateTimeField()
+    email = models.EmailField(max_length=254, default="default.email@gmail.com")
+
+    def __str__(self):
+        return self.email
 
 
 class Product(models.Model):
-    seller_id = models.ForeignKey(Account, related_name="seller", on_delete=models.CASCADE)
-    buyer_id = models.ForeignKey(Account, related_name="buyer", on_delete=models.CASCADE)
-    type = models.CharField(max_length=64)
+    seller = models.ForeignKey(User, related_name="seller", on_delete=models.CASCADE)
+    buyer = models.ForeignKey(User, related_name="buyer", on_delete=models.CASCADE)
+    TYPES_OF_EQUIPMENT = [("snb", 'snowboard'), ("ski", 'ski'), ("bike", 'bike')]
+    type = models.CharField(choices=TYPES_OF_EQUIPMENT, help_text='Type of equipment', blank=False, max_length=64)
+    # lists ???
     brand = models.CharField(max_length=64)
     model = models.CharField(max_length=64)
     size = models.CharField(max_length=64)
@@ -22,9 +34,10 @@ class Product(models.Model):
 
 
 class Image(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    photo_n = models.IntegerField()
-    photo = models.ImageField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='gear_site/static/product_pictures', blank=False)
 
     def __str__(self):
-        return self.photo
+        pass
+
+
