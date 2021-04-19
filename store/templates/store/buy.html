@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>
+
+  <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-info">
       <div class="container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,6 +20,12 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Sell<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://127.0.0.1:8000/login">Login<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Register<span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <ul class="navbar-nav mx-auto">
@@ -31,6 +39,7 @@
       </div>
     </nav>
 
+    <!-- Carousel -->
     <div class="container mt-3">
       <div class="row">
         <div class="col-12">
@@ -46,7 +55,6 @@
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100" src="../../../static/img/skis_carousel.png" alt="Second slide">
-
               </div>
               <div class="carousel-item">
                 <img class="d-block w-100" src="../../../static/img/gear_carousel.png" alt="Third slide">
@@ -57,6 +65,7 @@
       </div>
     </div>
 
+    <!-- Price, quality images -->
     <div class="container">
       <div class="row">
         <div class="col-4">
@@ -89,17 +98,17 @@
   <h2 class="text-center" style="color:#17a2b8"><strong><em>RECOMMENDED PRODUCTS</em></strong></h2>
 <hr>
 
-
+<!-- Products -->
     <div class="container">
       <div class="row text-center">
           {% for product in products%}
         <div class="col-md-4 pb-1 pb-md-0">
           <div class="card">
-            <img class="card-img-top" src="images/400X200.gif" alt="Card image cap">
+            <img class="card-img-top" src="img" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Add to Cart</a>
+              <h5 class="card-title">Product name</h5>
+              <p class="card-text">Short description</p>
+              <a href="#" class="btn btn-primary">More info</a>
             </div>
           </div>
         </div>
@@ -107,7 +116,7 @@
       </div>
     </div>
 
-
+<!-- Footer -->
   <hr>
     <div class="container text-white bg-dark p-4">
       <div class="row">
@@ -143,11 +152,13 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <p>Copyright © GearlizedWeb. All rights reserved.</p>
+            <p>Copyright © Gearlized_Web. All rights reserved.</p>
           </div>
         </div>
       </div>
     </footer>
+
+    <!-- Check this info for carousel animation -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
