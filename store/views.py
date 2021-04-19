@@ -40,5 +40,5 @@ def sing_in(request):
 
 
 def store(request):
-    context = {}
+    context = {"products": list(range(12))}
     return render(request, "store/buy.html", context)

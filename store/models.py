@@ -30,7 +30,7 @@ class Product(models.Model):
     extra_info = models.TextField()
 
     def __str__(self):
-        return f"{self.model}, {self.seller_id}"
+        return f"{self.model}, {self.seller}"
 
 
 class Image(models.Model):
