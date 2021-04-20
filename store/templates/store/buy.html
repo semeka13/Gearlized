@@ -22,11 +22,11 @@
               <a class="nav-link" href="http://127.0.0.1:8000/login">Login<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Register<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="http://127.0.0.1:8000/register">Register<span class="sr-only">(current)</span></a>
             </li>
               <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-              <a class="nav-link" href="#">Sell<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="http://127.0.0.1:8000/sell">Sell<span class="sr-only">(current)</span></a>
             </li>
                   </ul>
           </ul>
@@ -108,10 +108,10 @@
           {% for product in products%}
         <div class="col-md-4 pb-1 pb-md-0">
           <div class="card">
-            <img class="card-img-top" src="img" alt="Card image cap">
+            <img class="card-img-top" src="../../../{{ product.images.0.picture }}" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">Product name</h5>
-              <p class="card-text">Short description</p>
+              <h5 class="card-title">{{ product.data.brand }} {{ product.data.model }} </h5>
+              <p class="card-text">{{ product.data.extra_info }}</p>
               <a href="#" class="btn btn-primary">More info</a>
             </div>
           </div>
@@ -119,7 +119,7 @@
           {% endfor %}
       </div>
     </div>
-
+{# product.images.0.picture #}
 <!-- Footer -->
   <hr>
     <div class="container text-white bg-dark p-4">
