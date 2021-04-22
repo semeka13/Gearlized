@@ -43,6 +43,11 @@ class Products(models.Model):
     def __str__(self):
         return f"{self.model}, {self.seller}"
 
+    def save(self, *args, **kwargs):
+        ret = super().save(*args, **kwargs)
+        self.save()
+        return ret
+
 
 class Image(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
