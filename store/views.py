@@ -1,8 +1,13 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.contrib import messages  # import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
+from django.views import View
+from django.views.generic import TemplateView, FormView, CreateView
+
 from store.forms import SignUpForm
+from .models import Products, Image
 
 
 def sign_up(request):
@@ -15,7 +20,7 @@ def sign_up(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect('home')
+            return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
         form = SignUpForm()
@@ -32,7 +37,7 @@ def sing_in(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect('home')
+            return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
         form = SignUpForm()
@@ -42,3 +47,51 @@ def sing_in(request):
 def store(request):
     context = {"products": list(range(12))}
     return render(request, "store/buy.html", context)
+
+
+class MainView(TemplateView):
+    template_name = "store/buy.html"
+
+    def get(self, request):
+        # if request.user.is_authencitated:
+        products = Products.objects.all()
+        data = list()
+        for product in products:
+            images = Image.objects.filter(product=product).all()
+            data.append({"data": product, "images": images})
+        ctx = {"products": data}
+        return render(request, self.template_name, ctx)
+
+
+class LoginView(FormView):
+    form_class = SignUpForm
+    success_url = "/buy/"
+    template_name = "store/login.html"
+
+    def form_valid(self, form):
+        self.user = form.get_user()
+        login(self.request, self.user)
+        return super(LoginView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(LoginView, self).form_invalid(form)
+
+
+class Logout(View):
+    def get(self, request):
+        logout(request)
+        return redirect("/buy/")
+
+
+class AddProduct(CreateView):
+
+    fields = ["type", "model", "brand", "size", "condition", "season", "price", "extra_info"]
+    model = Products
+    success_url = "/buy/"
+    template_name = "store/sell.html"
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.seller = self.request.user
+        self.object.save()
+        return redirect(self.success_url)
