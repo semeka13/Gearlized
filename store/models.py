@@ -16,9 +16,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254, default="default.email@gmail.com")
     country = CountryField(default="Russia")
     city = models.CharField(max_length=256, default="Vladivostok")
-    is_active = models.BooleanField(default=True)
-
-
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.username}-{self.email}"
