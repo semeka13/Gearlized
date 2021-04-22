@@ -58,44 +58,36 @@
     <form class="form-group" method="post">
         {% csrf_token %}
         <h5 class="text-center" ><em>Username</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>2j11</em></h5>
         {{ form.username }}
     <hr>
 
         <h5 class="text-center"><em>Name</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>2554111</em></h5>
         {{ form.first_name }}
     <hr>
 
         <h5 class="text-center" ><em>Surname</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>2861</em></h5>
         {{ form.last_name }}
     <hr>
 
         <h5 class="text-center"><em>Phone num.</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>2</em></h5>
         {{ form.phone_number }}
     <hr>
 
 
         <h5 class="text-center" ><em>City</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>242141111</em></h5>
         {{ form.city }}
     <hr>
 
         <h5 class="text-center" ><em>Email</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>2421411</em></h5>
         {{ form.email }}
 
     <hr>
 
         <h5 class="text-center" ><em>Password</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>242</em></h5>
         {{ form.password1 }}
     <hr>
 
         <h5 class="text-center"><em>Retype Password</em></h5>
-        <h5 class="text-center" style="color:#FFFFFF"><em>242</em></h5>
         {{ form.password2 }}
     <hr>
     {% for error in field.errors %}
