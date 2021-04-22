@@ -6,27 +6,30 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import TemplateView, FormView, CreateView
 
+
 from store.forms import SignUpForm
 from .models import Products, Image, User
 
 
 def sign_up(request):
+    print(request)
     if request.POST:
         form = SignUpForm(request.POST)
+        print(form.errors)
         if form.is_valid():
-            form.save()
-            print(f"form = {form.data}")
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            user.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password,)
             login(request, user)
-            messages.success(request, "Registration successful.")
-            return redirect('login')
+            return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
-    else:
-
-        form = SignUpForm()
-    return render(request, 'store/register.html', {'form': form})
+    return render(request, 'store/register.html', {'form': SignUpForm()})
 
 
 class MainView(TemplateView):
@@ -76,3 +79,4 @@ class AddProduct(CreateView):
         self.object.seller = self.request.user
         self.object.save()
         return redirect(self.success_url)
+
