@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -24,11 +25,13 @@
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://127.0.0.1:8000/register">Register<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="http://127.0.0.1:8000/register">Register<span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/buy">Buy<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="http://127.0.0.1:8000/buy">Buy<span
+                                class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="http://127.0.0.1:8000/sell">Sell<span class="sr-only">(current)</span></a>
@@ -57,42 +60,32 @@
 <div class="container mt-2 mr-auto">
     <form class="form-group" method="post">
         {% csrf_token %}
-        <h5 class="text-left" ><em>Username</em></h5>
-        {{ form.username }}
-    <hr>
+        <h5 class="text-left"><em>Username {{ form.username }}</em></h5>
+        <hr>
 
-        <h5 class="text-left"><em>Name</em></h5>
-        {{ form.first_name }}
-    <hr>
+        <h5 class="text-left"><em>Name {{ form.first_name }}</em></h5>
+        <hr>
 
-        <h5 class="text-left" ><em>Surname</em></h5>
-        {{ form.last_name }}
-    <hr>
+        <h5 class="text-left"><em>Surname {{ form.last_name }}</em></h5>
+        <hr>
 
-        <h5 class="text-left"><em>Phone num.</em></h5>
-        {{ form.phone_number }}
-    <hr>
+        <h5 class="text-left"><em>Phone num. {{ form.phone_number }}</em></h5>
+        <hr>
 
+        <h5 class="text-left"><em>City {{ form.city }}</em></h5>
+        <hr>
 
-        <h5 class="text-left" ><em>City</em></h5>
-        {{ form.city }}
-    <hr>
+        <h5 class="text-left"><em>Email {{ form.email }}</em></h5>
+        <hr>
 
-        <h5 class="text-left" ><em>Email</em></h5>
-        {{ form.email }}
+        <h5 class="text-left"><em>Password {{ form.password1 }}</em></h5>
+        <hr>
 
-    <hr>
-
-        <h5 class="text-left" ><em>Password</em></h5>
-        {{ form.password1 }}
-    <hr>
-
-        <h5 class="text-left"><em>Retype Password</em></h5>
-        {{ form.password2 }}
-    <hr>
-    {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-            {% endfor %}
+        <h5 class="text-left"><em>Retype Password {{ form.password2 }}</em></h5>
+        <hr>
+        {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
 
         <button type="button" class="btn btn-success">Register</button>
     </form>
