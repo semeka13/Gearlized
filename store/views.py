@@ -7,14 +7,15 @@ from django.views import View
 from django.views.generic import TemplateView, FormView, CreateView
 
 from store.forms import SignUpForm
-from .models import Products, Image
+from .models import Products, Image, User
 
 
 def sign_up(request):
-    if request.method == 'POST':
+    if request.POST:
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            print(f"form = {form.data}")
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -23,30 +24,9 @@ def sign_up(request):
             return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
+
         form = SignUpForm()
     return render(request, 'store/register.html', {'form': form})
-
-
-def sing_in(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            messages.success(request, "Registration successful.")
-            return redirect('buy')
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    else:
-        form = SignUpForm()
-    return render(request, 'store/login.html', {'form': form})
-
-
-def store(request):
-    context = {"products": list(range(12))}
-    return render(request, "store/buy.html", context)
 
 
 class MainView(TemplateView):
@@ -55,11 +35,12 @@ class MainView(TemplateView):
     def get(self, request):
         # if request.user.is_authencitated:
         products = Products.objects.all()
+        users = User.objects.all()
         data = list()
         for product in products:
             images = Image.objects.filter(product=product).all()
             data.append({"data": product, "images": images})
-        ctx = {"products": data}
+        ctx = {"products": data, "users": users}
         return render(request, self.template_name, ctx)
 
 

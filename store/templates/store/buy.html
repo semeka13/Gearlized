@@ -133,6 +133,9 @@
                 <li class="btn-link"> <a>Instagram link</a> </li>
                 <li class="btn-link"> <a>VK link</a> </li>
                 <li class="btn-link"> <a>Facebook link</a> </li>
+                  {% for user in users %}
+                  <li>{{ user }}</li>
+                  {% endfor %}
               </ul>
             </div>
             <div class="col-sm-6 col-md-4 col-lg-4 col-12">
