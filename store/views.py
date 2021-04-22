@@ -21,7 +21,7 @@ def sign_up(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect('buy')
+            return redirect('login')
         messages.error(request, "Unsuccessful registration. Invalid information.")
     else:
 
