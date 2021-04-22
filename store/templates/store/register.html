@@ -57,37 +57,37 @@
 <div class="container mt-2 mr-auto">
     <form class="form-group" method="post">
         {% csrf_token %}
-        <h5 class="text-center" ><em>Username</em></h5>
+        <h5 class="text-left" ><em>Username</em></h5>
         {{ form.username }}
     <hr>
 
-        <h5 class="text-center"><em>Name</em></h5>
+        <h5 class="text-left"><em>Name</em></h5>
         {{ form.first_name }}
     <hr>
 
-        <h5 class="text-center" ><em>Surname</em></h5>
+        <h5 class="text-left" ><em>Surname</em></h5>
         {{ form.last_name }}
     <hr>
 
-        <h5 class="text-center"><em>Phone num.</em></h5>
+        <h5 class="text-left"><em>Phone num.</em></h5>
         {{ form.phone_number }}
     <hr>
 
 
-        <h5 class="text-center" ><em>City</em></h5>
+        <h5 class="text-left" ><em>City</em></h5>
         {{ form.city }}
     <hr>
 
-        <h5 class="text-center" ><em>Email</em></h5>
+        <h5 class="text-left" ><em>Email</em></h5>
         {{ form.email }}
 
     <hr>
 
-        <h5 class="text-center" ><em>Password</em></h5>
+        <h5 class="text-left" ><em>Password</em></h5>
         {{ form.password1 }}
     <hr>
 
-        <h5 class="text-center"><em>Retype Password</em></h5>
+        <h5 class="text-left"><em>Retype Password</em></h5>
         {{ form.password2 }}
     <hr>
     {% for error in field.errors %}
