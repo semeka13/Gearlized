@@ -8,7 +8,7 @@ from django.views import View
 from django.views.generic import TemplateView, FormView, CreateView
 
 
-from store.forms import SignUpForm, LoginForm
+from store.forms import SignUpForm, LoginForm, AddProductForm
 from .models import Products, Image, User
 
 
@@ -42,6 +42,16 @@ def sign_in(request):
                 return HttpResponse('Disabled account')
             error = 'Invalid login or password'
     return render(request, 'store/login.html', {'form': LoginForm(), "error": error})
+
+
+def add_product(request):
+    if request.POST:
+        form = AddProductForm(request.POST)
+        if form.is_valid():
+            product = form.save()
+            return redirect('buy')
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    return render(request, 'store/register.html', {'form': AddProductForm(), 'error': "error_message"})
 
 
 class MainView(TemplateView):

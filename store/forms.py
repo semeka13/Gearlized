@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from .models import Products
 
 User = get_user_model()
 
@@ -27,14 +28,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-"""class AddProductForm(forms.Form):
-    modelform
-    TYPES_OF_EQUIPMENT = [("snb", 'snowboard'), ("ski", 'ski'), ("bike", 'bike')]
-    type = forms.CharField(choices=TYPES_OF_EQUIPMENT, help_text='Type of equipment', max_length=64)
-    brand = forms.CharField(max_length=64)
-    model = forms.CharField(max_length=64)
-    size = forms.CharField(max_length=64)
-    condition = forms.IntegerField()
-    season = forms.CharField(max_length=64)
-    price = forms.DecimalField(max_digits=20, decimal_places=2)
-    extra_info = forms.Textarea()"""
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Products
+        exclude = ["seller", "buyer", "sold", "publication_time"]

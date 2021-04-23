@@ -41,7 +41,6 @@ class Products(models.Model):
         return f"{self.model}, {self.seller}"
 
 
-
 class Image(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='./static/product_pictures', blank=False)
