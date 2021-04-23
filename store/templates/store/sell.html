@@ -56,24 +56,25 @@
 
 <!-- item info -->
 <div class="container mt-3 mr-auto">
-    <form class="form-group">
+    <form class="form-group" method="POST">
+        {% csrf_token %}
         <h5 class="text-left"><em>Brand</em></h5>
-        <input class="form-control mr-sm-2" type="Brand" placeholder="Brand" aria-label="type" required />
+        <input class="form-control mr-sm-2" type="brand" placeholder="Brand" aria-label="type" required />
     <hr>
 
-        <h5 class="text-center"><em>Model</em></h5>
+        <h5 class="text-left"><em>Model</em></h5>
         <input class="form-control mr-sm-2" type="model" placeholder="Model" aria-label="type" required />
     <hr>
 
-        <h5 class="text-center"><em>Size</em></h5>
+        <h5 class="text-left"><em>Size</em></h5>
         <input class="form-control mr-sm-2" type="size" placeholder="Size" aria-label="type" required />
     <hr>
 
-        <h5 class="text-center" ><em>Condition</em></h5>
+        <h5 class="text-left" ><em>Condition</em></h5>
         <input class="form-control mr-sm-2" type="condition" placeholder="From 1 to 10" aria-label="type" required />
     <hr>
 
-        <h5 class="text-center" ><em>Year</em></h5>
+        <h5 class="text-left" ><em>Year</em></h5>
         <select name="year" id="year">
             <option value="2021">2021</option>
             <option value="2020">2020</option>
@@ -94,12 +95,12 @@
             <input type="file" id="file" name="file" multiple>
         </form>
     <hr>
-        <h5 class="text-center"><em>Extra info</em></h5>
+        <h5 class="text-left"><em>Extra info</em></h5>
         <textarea></textarea>
     <hr>
 
-        <h5 class="text-center" ><em>Price</em></h5>
-        <input class="form-control mr-sm-2" type="Price" placeholder="Price in rub" aria-label="type" required />
+        <h5 class="text-left" ><em>Price</em></h5>
+        <input class="form-control mr-sm-2" type="price" placeholder="Price in rub" aria-label="type" required />
     <hr>
 
         <button type="button" class="btn btn-success">Confirm</button>

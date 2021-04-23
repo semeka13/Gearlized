@@ -10,25 +10,13 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    username = models.CharField(max_length=30, unique=True)
-    name = models.CharField(max_length=30, blank=True)
-    surname = models.CharField(max_length=30, blank=True)
     registration_time = models.DateTimeField(default=django.utils.timezone.now(), blank=True)
     phone_number = models.CharField(max_length=15, default="8228228228", blank=True)
-    email = models.EmailField(max_length=254, default="default.email@gmail.com", blank=True, unique=True)
     country = CountryField(default="Russia", blank=True)
     city = models.CharField(max_length=256, default="Vladivostok", blank=True)
-    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.username}-{self.email}"
-
-
-@receiver(post_save, sender=User)
-def update_profile_signal(sender, instance, created, **kwargs):
-    if created:
-        User.objects.create(user=instance)
-    instance.profile.save()
 
 
 class Products(models.Model):
@@ -52,10 +40,6 @@ class Products(models.Model):
     def __str__(self):
         return f"{self.model}, {self.seller}"
 
-    def save(self, *args, **kwargs):
-        ret = super().save(*args, **kwargs)
-        self.save()
-        return ret
 
 
 class Image(models.Model):

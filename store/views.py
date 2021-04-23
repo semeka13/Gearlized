@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib import messages  # import messages
 from django.contrib.auth import login, authenticate, logout
@@ -7,7 +8,7 @@ from django.views import View
 from django.views.generic import TemplateView, FormView, CreateView
 
 
-from store.forms import SignUpForm
+from store.forms import SignUpForm, LoginForm
 from .models import Products, Image, User
 
 
@@ -19,17 +20,28 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
-            user.profile.first_name = form.cleaned_data.get('first_name')
-            user.profile.last_name = form.cleaned_data.get('last_name')
-            user.profile.email = form.cleaned_data.get('email')
-            user.save()
-            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            username = form.cleaned_data.get('username')
             user = authenticate(username=username, password=password,)
             login(request, user)
             return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
-    return render(request, 'store/register.html', {'form': SignUpForm()})
+    return render(request, 'store/register.html', {'form': SignUpForm(), 'error': "error_message"})
+
+
+def sign_in(request):
+    error = ""
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("/buy/")
+                return HttpResponse('Disabled account')
+            error = 'Invalid login or password'
+    return render(request, 'store/login.html', {'form': LoginForm(), "error": error})
 
 
 class MainView(TemplateView):
@@ -45,20 +57,6 @@ class MainView(TemplateView):
             data.append({"data": product, "images": images})
         ctx = {"products": data, "users": users}
         return render(request, self.template_name, ctx)
-
-
-class LoginView(FormView):
-    form_class = SignUpForm
-    success_url = "/buy/"
-    template_name = "store/login.html"
-
-    def form_valid(self, form):
-        self.user = form.get_user()
-        login(self.request, self.user)
-        return super(LoginView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        return super(LoginView, self).form_invalid(form)
 
 
 class Logout(View):
