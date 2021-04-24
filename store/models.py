@@ -20,8 +20,8 @@ class User(AbstractUser):
 
 
 class Products(models.Model):
-    seller = models.ForeignKey(User, related_name="seller", on_delete=models.CASCADE, blank=True)
-    buyer = models.ForeignKey(User, related_name="buyer", on_delete=models.CASCADE, blank=True)
+    seller = models.ForeignKey(User, related_name="seller", on_delete=models.CASCADE, blank=True, null=True)
+    buyer = models.ForeignKey(User, related_name="buyer", on_delete=models.CASCADE, blank=True, null=True)
     TYPES_OF_EQUIPMENT = [("snb", 'snowboard'), ("ski", 'ski'), ("bike", 'bike')]
     type = models.CharField(choices=TYPES_OF_EQUIPMENT, help_text='Type of equipment', blank=False, max_length=64)
     brand = models.CharField(max_length=64, blank=True)
@@ -30,8 +30,8 @@ class Products(models.Model):
     condition = models.IntegerField(blank=True)
     season = models.CharField(max_length=64, blank=True)
     price = models.DecimalField(max_digits=20, decimal_places=2, blank=True)
-    sold = models.BooleanField(default=False, blank=True)
-    publication_time = models.DateTimeField(blank=True)
+    sold = models.BooleanField(default=False, blank=True, null=True)
+    publication_time = models.DateTimeField(blank=True, null=True)
     extra_info = models.TextField(blank=True)
 
     USERNAME_FIELD = 'username'

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -14,6 +15,7 @@ from .models import Products, Image, User
 
 def sign_up(request):
     print(request)
+    errors = ""
     if request.POST:
         form = SignUpForm(request.POST)
         print(form.errors)
@@ -25,8 +27,8 @@ def sign_up(request):
             user = authenticate(username=username, password=password,)
             login(request, user)
             return redirect('buy')
-        messages.error(request, "Unsuccessful registration. Invalid information.")
-    return render(request, 'store/register.html', {'form': SignUpForm(), 'error': "error_message"})
+        errors = form.errors
+    return render(request, 'store/register.html', {'form': SignUpForm(), 'error': errors})
 
 
 def sign_in(request):
@@ -44,6 +46,7 @@ def sign_in(request):
     return render(request, 'store/login.html', {'form': LoginForm(), "error": error})
 
 
+@login_required
 def add_product(request):
     if request.POST:
         form = AddProductForm(request.POST)
@@ -51,7 +54,7 @@ def add_product(request):
             product = form.save()
             return redirect('buy')
         messages.error(request, "Unsuccessful registration. Invalid information.")
-    return render(request, 'store/register.html', {'form': AddProductForm(), 'error': "error_message"})
+    return render(request, 'store/sell.html', {'form': AddProductForm(), 'error': "error_message"})
 
 
 class MainView(TemplateView):

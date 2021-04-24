@@ -58,52 +58,28 @@
 <div class="container mt-3 mr-auto">
     <form class="form-group" method="POST">
         {% csrf_token %}
-        <h5 class="text-left"><em>Brand</em></h5>
-        <input class="form-control mr-sm-2" type="brand" placeholder="Brand" aria-label="type" required />
+        <h5 class="text-left"><em>Type {{ form.type }}</em></h5>
+    <hr>
+        <h5 class="text-left"><em>Brand {{ form.brand }}</em></h5>
     <hr>
 
-        <h5 class="text-left"><em>Model</em></h5>
-        <input class="form-control mr-sm-2" type="model" placeholder="Model" aria-label="type" required />
+        <h5 class="text-left"><em>Model {{ form.model }}</em></h5>
     <hr>
 
-        <h5 class="text-left"><em>Size</em></h5>
-        <input class="form-control mr-sm-2" type="size" placeholder="Size" aria-label="type" required />
+        <h5 class="text-left"><em>Size {{ form.size }}</em></h5>
+    <hr>
+        <h5 class="text-left" ><em>Condition {{ form.condition }}</em></h5>
     <hr>
 
-        <h5 class="text-left" ><em>Condition</em></h5>
-        <input class="form-control mr-sm-2" type="condition" placeholder="From 1 to 10" aria-label="type" required />
+        <h5 class="text-left" ><em>Year {{ form.season }}</em></h5>
+    <hr>
+        <h5 class="text-left"><em>Extra info {{ form.extra_info }}</em></h5>
     <hr>
 
-        <h5 class="text-left" ><em>Year</em></h5>
-        <select name="year" id="year">
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
-            <option value="2017">2017</option>
-            <option value="2016">2016</option>
-            <option value="2015">2015</option>
-            <option value="2014">2014</option>
-            <option value="2013">2013</option>
-            <option value="2012">2012</option>
-            <option value="2011">2011</option>
-            <option value="2010">2010</option>
-        </select>
-    <hr>
-        <form method="post" enctype="multipart/form-data">
-            <h5>Upload image</h5>
-            <input type="file" id="file" name="file" multiple>
-        </form>
-    <hr>
-        <h5 class="text-left"><em>Extra info</em></h5>
-        <textarea></textarea>
+        <h5 class="text-left" ><em>Price {{ form.price }}</em></h5>
     <hr>
 
-        <h5 class="text-left" ><em>Price</em></h5>
-        <input class="form-control mr-sm-2" type="price" placeholder="Price in rub" aria-label="type" required />
-    <hr>
-
-        <button type="button" class="btn btn-success">Confirm</button>
+        <button type="submit" class="btn btn-success">Confirm</button>
     </form>
 
 
