@@ -48,8 +48,8 @@ def sign_in(request):
 
 
 def add_product(request):
+    errors = list()
     if request.POST and request.FILES["file"]:
-
         condition = request.POST.get("condition")
         brand = request.POST.get("brand")
         year = request.POST.get("year")
@@ -57,28 +57,36 @@ def add_product(request):
         size = request.POST.get("size")
         extra_info = request.POST.get("extra_info")
         price = request.POST.get("price")
-        # file = request.POST.get("file")
-        user = request.user
-        product = Products(condition=condition, brand=brand,
-                           season=year, model=model, size=size,
-                           price=price, extra_info=extra_info,
-                           seller=user)
-        product.save()
-        file = request.FILES["file"]
-        fs = FileSystemStorage(location='./static/product_pictures')
-        filename = fs.save(file.name, file)
-        image = Image(product=product, picture=file)
-        image.save()
-
-        return redirect('buy')
-    messages.error(request, "Unsuccessful registration. Invalid information.")
-    return render(request, 'store/sell.html', {'form': AddProductForm(), 'error': "error_message"})
+        files = request.FILES.getlist('file')
+        if not all([condition, brand, year, model, size, extra_info, price, files]):
+            return render(request, 'store/sell.html', {'errors': ["Fill in all the fields"]})
+        if not isinstance(price, float):
+            errors.append("Price should be a decimal number")
+        if not isinstance(condition, float):
+            errors.append("Condition should be a number")
+        for i in files:
+            if i.name.split(".")[-1] not in "jpg jpeg png bmp":
+                errors.append("only images with .jpg .jpeg .png .bmp are excepted")
+        if not errors:
+            user = request.user
+            product = Products(condition=condition, brand=brand,
+                               season=year, model=model, size=size,
+                               price=price, extra_info=extra_info,
+                               seller=user)
+            product.save()
+            fs = FileSystemStorage(location='./static/product_pictures')
+            for file in files:
+                fs.save(file.name, file)
+                image = Image(product=product, picture=file)
+                image.save()
+            return redirect('buy')
+    return render(request, 'store/sell.html', {'errors': errors})
 
 
 def product_view(request, product_id):
     product = Products.objects.get(id=product_id)
     user = product.seller
-    images = [Image.objects.get(product=product)]
+    images = Image.objects.filter(product=product)
     images_url = [image.picture for image in images]
     data = {"product": product, "user": user, "images": images_url}
     return render(request, 'store/product_info.html', data)

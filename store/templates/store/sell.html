@@ -102,6 +102,11 @@
         <h5 class="text-center" ><em>Price</em></h5>
         <input class="form-control mr-sm-2" name="price"  aria-label="type" required />
     <hr>
+        {% if errors %}
+            {% for i in errors %}
+            <p style="color: red">{{ i }}</p>
+            {% endfor %}
+        {% endif %}
         <button type="submit" class="btn btn-success">Confirm</button>
     </form>
 </div>
