@@ -15,11 +15,8 @@ from .models import Products, Image, User
 
 
 def sign_up(request):
-    print(request)
-    errors = ""
     if request.POST:
         form = SignUpForm(request.POST)
-        print(form.errors)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
@@ -28,8 +25,10 @@ def sign_up(request):
             user = authenticate(username=username, password=password,)
             login(request, user)
             return redirect('buy')
+
         errors = form.errors
-    return render(request, 'store/register.html', {'form': SignUpForm(), 'error': errors})
+
+    return render(request, 'store/register.html', {'form': SignUpForm()})
 
 
 def sign_in(request):
@@ -96,7 +95,6 @@ class MainView(TemplateView):
     template_name = "store/buy.html"
 
     def get(self, request):
-        # if request.user.is_authencitated:
         products = Products.objects.all()
         users = User.objects.all()
         data = list()
