@@ -75,6 +75,15 @@ def add_product(request):
     return render(request, 'store/sell.html', {'form': AddProductForm(), 'error': "error_message"})
 
 
+def product_view(request, product_id):
+    product = Products.objects.get(id=product_id)
+    user = product.seller
+    images = [Image.objects.get(product=product)]
+    images_url = [image.picture for image in images]
+    data = {"product": product, "user": user, "images": images_url}
+    return render(request, 'store/product_info.html', data)
+
+
 class MainView(TemplateView):
     template_name = "store/buy.html"
 
@@ -85,7 +94,7 @@ class MainView(TemplateView):
         data = list()
         for product in products:
             images = Image.objects.filter(product=product).all()
-            data.append({"data": product, "images": images})
+            data.append({"data": product, "images": images, "link": f"http://127.0.0.1:8000/buy/{product.id}"})
         ctx = {"products": data, "users": users}
         return render(request, self.template_name, ctx)
 
