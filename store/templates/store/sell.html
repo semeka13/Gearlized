@@ -56,29 +56,52 @@
 
 <!-- item info -->
 <div class="container mt-3 mr-auto">
-    <form class="form-group" method="POST">
+    <form class="form-group" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h5 class="text-left"><em>Type {{ form.type }}</em></h5>
-    <hr>
-        <h5 class="text-left"><em>Brand {{ form.brand }}</em></h5>
-    <hr>
-
-        <h5 class="text-left"><em>Model {{ form.model }}</em></h5>
+        <h5 class="text-left"><em>Brand</em></h5>
+        <input class="form-control mr-sm-2" id="Brand" name="brand" aria-label="type" required />
     <hr>
 
-        <h5 class="text-left"><em>Size {{ form.size }}</em></h5>
-    <hr>
-        <h5 class="text-left" ><em>Condition {{ form.condition }}</em></h5>
-    <hr>
-
-        <h5 class="text-left" ><em>Year {{ form.season }}</em></h5>
-    <hr>
-        <h5 class="text-left"><em>Extra info {{ form.extra_info }}</em></h5>
+        <h5 class="text-center"><em>Model</em></h5>
+        <input class="form-control mr-sm-2" id="model" name="model" aria-label="type" required />
     <hr>
 
-        <h5 class="text-left" ><em>Price {{ form.price }}</em></h5>
+        <h5 class="text-center"><em>Size</em></h5>
+        <input class="form-control mr-sm-2" id="size" name="size" aria-label="type" required />
     <hr>
 
+        <h5 class="text-center" ><em>Condition</em></h5>
+        <input class="form-control mr-sm-2" id="condition" name="condition" aria-label="type" required />
+    <hr>
+
+        <h5 class="text-center" ><em>Year</em></h5>
+        <select name="year" id="year">
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+        </select>
+
+    <hr>
+        <h5 class="text-center" ><em>Extra info</em></h5>
+        <textarea id="extra_info" name="extra_info"></textarea>
+    <hr>
+
+        <h5>Upload image</h5>
+        <input type="file" id="file" name="file" multiple>
+
+
+        <h5 class="text-center" ><em>Price</em></h5>
+        <input class="form-control mr-sm-2" name="price"  aria-label="type" required />
+    <hr>
         <button type="submit" class="btn btn-success">Confirm</button>
     </form>
 </div>
