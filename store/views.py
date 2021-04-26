@@ -46,6 +46,7 @@ def sign_in(request):
     return render(request, 'store/login.html', {'form': LoginForm(), "error": error})
 
 
+@login_required()
 def add_product(request):
     errors = list()
     if request.POST and request.FILES["file"]:
