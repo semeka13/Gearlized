@@ -8,12 +8,36 @@
     <!-- Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
- .carousel-inner > .item > img,
- .carousel-inner > .item > a > img {
-     display: block;
-     max-width: 100%;
-     height: 400px !important;
- }
+         .carousel-inner > .item > img,
+         .carousel-inner > .item > a > img {
+             display: block;
+             width: 400px;
+             height: 700px !important;
+         }
+
+        footer {
+                    padding: 0px 0px 0px 0px;
+                    bottom: 0;
+                    width: 100%;
+                }
+
+                .carousel-control-prev-icon,
+                .carousel-control-next-icon {
+                  background-image: none;
+                }
+
+                .carousel-control-next-icon:after
+                {
+                  content: '>';
+                  font-size: 55px;
+                  color: aqua;
+                }
+
+                .carousel-control-prev-icon:after {
+                  content: '<';
+                  font-size: 55px;
+                  color: aqua;
+                }
 
     </style>
 </head>
@@ -76,6 +100,8 @@
                     <hr>
                     <h6 class="text-left">Seller: {{ user.username }}</h6>
                     <h6 class="text-left">Seller phone: {{ user.phone_number }}</h6>
+                    <hr>
+                    <h6>Extra info: {{ product.extra_info }}</h6>
                 </div>
             </div>
         </div>
@@ -88,11 +114,12 @@
     <div class="row">
         <div class="col-12">
             <div class="jumbotron">
-                <h5>Extra info: {{ product.extra_info }}</h5>
+
 
                 <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel"
                      style="background-color: grey">
                     <ol class="carousel-indicators">
+
                         <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
                         <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
@@ -103,8 +130,9 @@
                             <div class="carousel-item active"><img class="d-block mx-auto"
                                                                src="../../../{{ image }}"
                                                                alt="First slide">
+
                             </div>
-                            {% else %}
+                        {% else %}
                             <div class="carousel-item"><img class="d-block mx-auto"
                                                         src="../../../{{ image }}"
                                                         alt="Second slide">
@@ -114,15 +142,17 @@
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button"
                            data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span>
-                        </a> <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button"
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button"
                                 data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span
-                                class="sr-only">Next</span> </a></div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Footer -->
