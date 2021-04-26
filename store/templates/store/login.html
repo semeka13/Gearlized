@@ -64,7 +64,7 @@
 <!-- Information abou product text -->
 <div class="container mt-3 mr-auto">
     <h4>Login info:</h4>
-    <hr>
+    <br>
 </div>
 
 <!-- item info -->
@@ -75,10 +75,10 @@
         <hr>
 
         <h5 class="text-left" style=""><em>Password {{ form.password }}</em></h5>
-        <hr>
+        <br>
         {% if error %}
         <p style="color: red">{{ error }}</p>
-        <hr>
+        <br>
         {% endif %}
 
         <button type="submit" class="btn btn-success">Login</button>
@@ -127,7 +127,11 @@
         </div>
     </div>
 </footer>
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap-4.4.1.js"></script>
 
 </body>
 </html>

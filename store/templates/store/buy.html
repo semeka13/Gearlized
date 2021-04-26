@@ -113,9 +113,14 @@
         </div>
     </div>
 </div>
+<br>
 <hr>
-<h2 class="text-center" style="color:#17a2b8"><strong><em>PRODUCTS</em></strong></h2>
+
+<div class="container">
+        <h2 class="text-center" style="color:#17a2b8"><strong><em>PRODUCTS</em></strong></h2>
+</div>
 <hr>
+<br>
 
 <!-- Products -->
 <div class="container">
@@ -123,7 +128,7 @@
         {% for product in products%}
         <div class="col-md-4 pb-1 pb-md-0">
             <div class="card">
-                <img class="card-img-top" src="../../../{{ product.images.0.picture }}" alt="Card image cap">
+                <img class="card-img-top" src="../../../{{ product.images.0.picture }}" alt="Card image cap" height="400">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.data.brand }} {{ product.data.model }} </h5>
                     <p class="card-text">{{ product.data.extra_info }}</p>
@@ -144,17 +149,17 @@
             <div class="col-lg-8">
                 <div class="row text-center">
                     <div class="col-10">
-                            <a href="https://www.instagram.com/semeka_13/?hl=ru">
-                                <img alt="Qries" src="../../../static/img/instagram.png" width=45" height="45">
-                            </a>
+                        <a href="https://www.instagram.com/semeka_13/?hl=ru">
+                            <img alt="Qries" src="../../../static/img/instagram.png" width=45" height="45">
+                        </a>
                         <p>Instagram</p>
-                            <a href="https://vk.com/semeka13">
-                                <img alt="Qries" src="../../../static/img/vk.png" width=45" height="45">
-                            </a>
+                        <a href="https://vk.com/semeka13">
+                            <img alt="Qries" src="../../../static/img/vk.png" width=45" height="45">
+                        </a>
                         <p>VK</p>
-                            <a href="https://www.facebook.com/mike.lazarev/">
-                                <img alt="Qries" src="../../../static/img/facebook.png" width=55" height="55">
-                            </a>
+                        <a href="https://www.facebook.com/mike.lazarev/">
+                            <img alt="Qries" src="../../../static/img/facebook.png" width=55" height="55">
+                        </a>
                         <p>Facebook</p>
 
                     </div>
@@ -177,7 +182,11 @@
         </div>
     </div>
 </footer>
-
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/jquery-3.4.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap-4.4.1.js"></script>
 
 </body>
 </html>
