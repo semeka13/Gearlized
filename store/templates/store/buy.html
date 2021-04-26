@@ -45,13 +45,15 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
             </form>
-            <ul class="navbar-nav mr-auto">
-                {% if user.is_authenticated %}
-                Hi {{ user.username }}!
-                {% endif %}
-            </ul>
         </div>
     </div>
+    <div class="center">
+                 <h6 class="text-center" style="color:#ffffff">
+                {% if user.is_authenticated %}
+                Hi, {{ user.username }}!
+                {% endif %}
+                </h6>
+            </div>
 </nav>
 
 
