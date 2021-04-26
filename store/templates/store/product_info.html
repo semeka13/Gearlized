@@ -91,18 +91,46 @@
                 <div class="col-md-10 my-4 mx-auto">
                     <h2 class="text-center">Name of product</h2>
                     <hr>
-                    <h6 class="text-left">Brand: {{ product.brand }}</h6>
-                    <h6 class="text-left">Model: {{ product.model }}</h6>
-                    <h6 class="text-left">Size: {{ product.size }}</h6>
-                    <h6 class="text-left">Condition: {{ product.condition }}</h6>
-                    <h6 class="text-left">Year: {{ product.season }}</h6>
-                    <h6 class="text-left">Price: {{ product.price }}</h6>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Brand:</strong></span>
+                      <span class="nowrap">{{ product.brand }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Model:</strong></span>
+                      <span class="nowrap">{{ product.model }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Size:</strong></span>
+                      <span class="nowrap">{{ product.size }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Condition:</strong></span>
+                      <span class="nowrap">{{ product.condition }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Year:</strong></span>
+                      <span class="nowrap">{{ product.season }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Price:</strong></span>
+                      <span class="nowrap">{{ product.price }}₽</span>
+                    </p>
 
                     <hr>
-                    <h6 class="text-left">Seller: {{ user.username }}</h6>
-                    <h6 class="text-left">Seller phone: {{ user.phone_number }}</h6>
+
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Seller:</strong></span>
+                      <span class="nowrap">{{ user.username }}</span>
+                    </p>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Seller phone:</strong></span>
+                      <span class="nowrap">{{ user.phone_number }}</span>
+                    </p>
                     <hr>
-                    <h6>Extra info: {{ product.extra_info }}</h6>
+                    <p>
+                      <span class="nowrap" style="color:#17a2b8; font-size: 120%"><strong>Extra info:</strong></span>
+                      <span class="nowrap">{{ product.extra_info }}</span>
+                    </p>
                 </div>
             </div>
         </div>
