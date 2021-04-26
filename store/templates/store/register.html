@@ -13,7 +13,9 @@
             bottom: 0;
             width: 100%;
         }
-
+        div.errors {
+            color: red;
+        }
 
 
 
@@ -95,11 +97,11 @@
 
         <h5 class="text-left"><em>Retype Password {{ form.password2 }}</em></h5>
         <hr>
+        <div class="errors">
         {{ form.errors }}
+        </div>
         <hr>
-        {% for error in form.error_messages %}
-        <p style="color: red">{{ error }}</p>
-        {% endfor %}
+
 
 
         <button type="submit" class="btn btn-success">Register</button>

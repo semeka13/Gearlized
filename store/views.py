@@ -25,9 +25,8 @@ def sign_up(request):
             user = authenticate(username=username, password=password,)
             login(request, user)
             return redirect('buy')
-
         errors = form.errors
-
+        return render(request, 'store/register.html', {'form': SignUpForm(request.POST)})
     return render(request, 'store/register.html', {'form': SignUpForm()})
 
 
