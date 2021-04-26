@@ -60,9 +60,9 @@ def add_product(request):
         files = request.FILES.getlist('file')
         if not all([condition, brand, year, model, size, extra_info, price, files]):
             return render(request, 'store/sell.html', {'errors': ["Fill in all the fields"]})
-        if not isinstance(price, float):
+        if not price.isdigit():
             errors.append("Price should be a decimal number")
-        if not isinstance(condition, float):
+        if not condition.isdigit():
             errors.append("Condition should be a number")
         for i in files:
             if i.name.split(".")[-1] not in "jpg jpeg png bmp":
