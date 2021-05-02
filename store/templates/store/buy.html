@@ -131,7 +131,7 @@
         {% for product in products%}
         <div class="col-md-4 pb-1 pb-md-0">
             <div class="card">
-                <img class="card-img-top" src="../../../{{ product.images.0.picture }}" alt="Card image cap" height="400">
+                <img class="card-img-top" src="{{ product.images.0.picture.url }}" alt="Card image cap" height="400">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.data.brand }} {{ product.data.model }} </h5>
                     <p class="card-text">{{ product.data.extra_info }}</p>
