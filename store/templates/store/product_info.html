@@ -54,20 +54,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://127.0.0.1:8000/login">Login<span
+                    <a class="nav-link" href="{% url 'login' %}">Login<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:8000/register">Register<span
+                    <a class="nav-link" href="{% url 'register' %}">Register<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/">Buy<span
+                        <a class="nav-link" href="{% url 'buy' %}">Buy<span
                                 class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/sell">Sell<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'sell' %}">Sell<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </ul>

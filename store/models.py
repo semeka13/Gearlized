@@ -5,14 +5,12 @@ import django
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django_countries.fields import CountryField
 from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
     registration_time = models.DateTimeField(default=django.utils.timezone.now(), blank=True)
     phone_number = models.CharField(max_length=15, default="8228228228", blank=True)
-    country = CountryField(default="Russia", blank=True)
     city = models.CharField(max_length=256, default="Vladivostok", blank=True)
 
     def __str__(self):
