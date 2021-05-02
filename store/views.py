@@ -100,7 +100,7 @@ class MainView(TemplateView):
         data = list()
         for product in products:
             images = Image.objects.filter(product=product).all()
-            data.append({"data": product, "images": images, "link": f"http://127.0.0.1:8000/buy/{product.id}"})
+            data.append({"data": product, "images": images, "link": f"http://www.gearlized.com/buy/{product.id}"})
         ctx = {"products": data, "users": users}
         return render(request, self.template_name, ctx)
 
