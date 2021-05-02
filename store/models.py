@@ -7,6 +7,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
 
+from gear_site.settings import BASE_DIR
+
 
 class User(AbstractUser):
     registration_time = models.DateTimeField(default=django.utils.timezone.now(), blank=True)
@@ -41,7 +43,7 @@ class Products(models.Model):
 
 class Image(models.Model):
     product = models.ForeignKey(Products, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='./static/product_pictures', blank=False)
+    picture = models.ImageField(upload_to='../media', blank=False)
 
     def __str__(self):
         return f"image {self.product}"
