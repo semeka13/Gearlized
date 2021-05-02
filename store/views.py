@@ -73,9 +73,9 @@ def add_product(request):
                                price=price, extra_info=extra_info,
                                seller=user)
             product.save()
-            fs = FileSystemStorage(location='./static/product_pictures')
+            # fs = FileSystemStorage(location='./static/product_pictures')
             for file in files:
-                fs.save(file.name, file)
+                # fs.save(file.name, file)
                 image = Image(product=product, picture=file)
                 image.save()
             return redirect('buy')
