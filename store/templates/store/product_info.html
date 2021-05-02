@@ -160,7 +160,7 @@
                         {% for image in images %}
                         {% if forloop.first %}
                         <div class="carousel-item active"><img class="d-block mx-auto"
-                                                               src="../../../{{ image }}"
+                                                               src="{{ image.url }}"
                                                                alt="First slide" width="50%" height="50%">
 
                         </div>
