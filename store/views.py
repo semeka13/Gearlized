@@ -48,7 +48,9 @@ def sign_in(request):
 @login_required()
 def add_product(request):
     errors = list()
-    if request.POST and request.FILES["file"]:
+    if request.POST and not request.FILES:
+        errors.append("You should upload a photo of your product")
+    if request.POST and request.FILES:
         condition = request.POST.get("condition")
         brand = request.POST.get("brand")
         year = request.POST.get("year")
@@ -79,6 +81,7 @@ def add_product(request):
                 image = Image(product=product, picture=file)
                 image.save()
             return redirect('buy')
+
     return render(request, 'store/sell.html', {'errors': errors})
 
 
